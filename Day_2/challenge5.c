@@ -3,7 +3,7 @@
 
 
 
-//Trouver le Maximum
+//Trouver le Minimum
 int main(int argc, char *argv[]) {
 	
 	int arrSize,i,j, somme=0,min;
