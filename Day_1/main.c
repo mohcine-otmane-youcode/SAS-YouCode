@@ -13,10 +13,19 @@ void challenge1(){
 	}
 }
 
-
+void challenge2(){
+	//Factorielle d'un Nombre
+	int n,i,f=1;
+	printf("Entrer un entier\n");
+	scanf("%d",&n);
+	for(i=1;i<n+1;i++){
+		f = f*i;
+	}
+	printf("%d!=%d",n,f);
+}
 
 int main(int argc, char *argv[]) {
-	challenge1();
+	challenge2();
 	
 	
 	
