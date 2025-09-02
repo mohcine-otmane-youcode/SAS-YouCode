@@ -24,6 +24,21 @@ void challenge2(){
 	printf("%d!=%d",n,f);
 }
 
+void challenge3(){
+	//Somme des N Nombres
+	int n,i,s=0;
+	printf("Entrer un entier\n");
+	scanf("%d",&n);
+	for(i=1;i<n;i++){
+		s = s+i;
+		if(i>1){
+			printf("+");
+		}
+		printf(" %d ",i);
+	}
+	printf("= %d",s);
+}
+
 int main(int argc, char *argv[]) {
 	challenge2();
 	
