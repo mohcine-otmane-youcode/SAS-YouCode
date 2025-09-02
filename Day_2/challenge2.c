@@ -3,8 +3,9 @@
 
 
 
-
+//Initialisation et Affichage
 int main(int argc, char *argv[]) {
+	
 	int arrSize,i;
 	
 	printf("Entrer la taille de Tableau\n");
