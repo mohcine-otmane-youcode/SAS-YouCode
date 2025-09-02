@@ -39,8 +39,25 @@ void challenge3(){
 	printf("= %d",s);
 }
 
+void challenge4(){
+	//Affichage des N Premiers Nombres Impairs
+	int n,i=1,j=0;
+	printf("Entrer un entier\n");
+	scanf("%d",&n);
+	while(j<n){
+		if(i%2!=0){
+			printf("%d",i);
+			if(j<n-1){
+				printf(", ");
+			}
+			j++;
+		}
+		i++;
+	}
+}
+
 int main(int argc, char *argv[]) {
-	challenge2();
+	challenge4();
 	
 	
 	
