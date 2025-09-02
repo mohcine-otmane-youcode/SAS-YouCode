@@ -3,7 +3,7 @@
 
 
 
-//Tableau en Ordre Croissant
+//Copie d'un Tableau
 int main(int argc, char *argv[]) {
 	
 	int arrSize,i,j,a;
