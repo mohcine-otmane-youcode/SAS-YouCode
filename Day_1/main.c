@@ -56,6 +56,19 @@ void challenge4(){
 	}
 }
 
+void challenge5(){
+	int n,i,exp,p=1;
+	printf("Entrer la base\n");
+	scanf("%d",&n);
+	printf("Entrer un exposant\n");
+	scanf("%d",&exp);
+	
+	for(i=1;i<exp+1;i++){
+		p=n*p;
+	}
+	printf("%d ^ %d = %d\t",n,exp,p);
+}
+
 int main(int argc, char *argv[]) {
 	challenge4();
 	
