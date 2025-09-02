@@ -86,6 +86,17 @@ void challenge6(){
 	}
 }
 
+void challenge7(){
+	//Inversion d'un Entier
+	int n;
+	printf("Entrer un entier\n");
+	scanf("%d",&n);
+	while(n>0){
+		printf("%d",n%10);
+		n = n/10;
+	}	
+}
+
 int main(int argc, char *argv[]) {
 	challenge4();
 	
