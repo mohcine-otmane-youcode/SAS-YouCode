@@ -111,8 +111,21 @@ void challenge8(){
 	printf("%d",fibo);
 }
 
+void challenge9(){
+	//Compteur de Chiffres
+	int n,num=0;
+	printf("Entrer un entier\n");
+	scanf("%d",&n);
+	
+	while(n>0){
+		n = n/10;
+		num++;
+	}	
+	printf("%d",num);
+}
+
 int main(int argc, char *argv[]) {
-	challenge8();
+	challenge9();
 	
 	
 	
