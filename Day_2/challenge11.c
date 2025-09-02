@@ -35,7 +35,6 @@ int main(int argc, char *argv[]) {
 		}
 	}
 	
-	
 	printf("\n");
 	printf("---Tableau Modifie---\n");
 	for(i=0;i<arrSize;i++){
