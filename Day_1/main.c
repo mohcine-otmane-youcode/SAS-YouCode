@@ -97,8 +97,22 @@ void challenge7(){
 	}	
 }
 
+void challenge8(){
+	//Affichage de la Suite de Fibonacci
+	int n, i,f0=0,f1=1, fibo;
+	printf("Entrer un entier\n");
+	scanf("%d",&n);
+	
+	for(i=0;i<n-1;i++){
+		fibo = f0+f1;
+		f0 = f1;
+		f1 = fibo;
+	}
+	printf("%d",fibo);
+}
+
 int main(int argc, char *argv[]) {
-	challenge4();
+	challenge8();
 	
 	
 	
