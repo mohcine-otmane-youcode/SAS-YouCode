@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
 
 char livresTitres[10][10];
@@ -12,8 +13,8 @@ char titresCollones[4][8] = {"ID", "Auteur", "Prix", "Quantite"};
 
 int main(int argc, char *argv[]) {
 	int chois;
-	
-	
+
+
 	Les_chois:
 	system("cls");
 	// Affichage de chois
@@ -28,10 +29,10 @@ int main(int argc, char *argv[]) {
 	printf("Votre chois: \n");
 	scanf("%d",&chois);
 	system("cls");
-	
-	
+
+
 	switch(chois){
-		
+
 		case 1: //Ajouter
 			printf("Entrer le titre de livre\n");
 			scanf(" %[^\n]",&livresTitres[stock]);
@@ -41,70 +42,60 @@ int main(int argc, char *argv[]) {
 			scanf("%f",&livresPrix[stock]);
 			stock++;
 		    goto Les_chois;
-		    
+
 		case 2: //Afficher
 			printf("Les livres disponibles sont\n");
-			
+
 			//Titres de collones
-			
-			
-			
-			
-			
-			
-			
-			
+
+
+
+
 			for(i=0;i<stock;i++){
 //				printf("---<== Livre: %d ==>---\n",i+1);
 //				printf("Titre: %s\n",livresTitres[i]);
 //				printf("Auteur: %s\n",livresAuteurs[i]);
 //				printf("Prix: %f\n",livresPrix[i]);
-				
+
 				int sizeTitre = 0,sizeAuteur=0,sizePrix=0;
-				for(j=0;j<sizeof(livresTitres[i])/sizeof(char);j++){
-					if(livresTitres[i]!="\0"){
-						sizeTitre++;
-					}
-				}
-				for(j=0;j<sizeof(livresAuteurs[i])/sizeof(char);j++){
-					if(livresTitres[i]!="\0"){
-						sizeAuteur++;
-					}
-				}
-				
-				printf("+");
-				for(j=0;j<sizeTitre+4;j++){
-					printf("-");
-				}		
-				printf("+");
-				for(j=0;j<sizeAuteur+4;j++){
-					printf("-");
-				}
-				printf("+");
-				
-				printf("\n");
-				printf("|   %s  ",livresTitres[i]);
-				printf("   %s  |",livresAuteurs[i]);
-				printf("   %s  |",livresPrix[i]);
-				
-				printf("\n");
-				
+
+				sizeTitre = strlen(livresTitres[i]);
+                sizeAuteur = strlen(livresAuteurs[i]);
+
+
 				printf("+");
 				for(j=0;j<sizeTitre+4;j++){
 					printf("-");
 				}
 				printf("+");
-				
 				for(j=0;j<sizeAuteur+4;j++){
 					printf("-");
 				}
 				printf("+");
-				
-				
+
 				printf("\n");
-				
-				
-				
+				printf("|  %s  ",livresTitres[i]);
+				printf("|  %s  |",livresAuteurs[i]);
+				printf("   %.2f  |",livresPrix[i]);
+
+				printf("\n");
+
+				printf("+");
+				for(j=0;j<sizeTitre+4;j++){
+					printf("-");
+				}
+				printf("+");
+
+				for(j=0;j<sizeAuteur+4;j++){
+					printf("-");
+				}
+				printf("+");
+
+
+				printf("\n");
+
+
+
 			}
 			printf("\n");
 			printf("1: Menu principale\n");
@@ -115,9 +106,9 @@ int main(int argc, char *argv[]) {
 			} else {
 				goto Les_chois;
 			}
-			
-		    
-		    
+
+
+
 		case 3: //Mettre a jour
 			printf("Les livres disponibles sont\n");
 			for(i=0;i<stock;i++){
@@ -126,7 +117,7 @@ int main(int argc, char *argv[]) {
 				printf("Auteur: %s\n",livresAuteurs[i]);
 				printf("Prix: %f\n",livresPrix[i]);
 			}
-			
+
 			printf("Choisir le livre a mettre a jour\n");
 			scanf("%d",&livreId);
 			printf("Choisir l\'atribu a mettre a jours\n");
@@ -148,13 +139,13 @@ int main(int argc, char *argv[]) {
 		    goto Les_chois;
 		case 4:
 //			supprimer_un_livre();
-			
+
 			system("cls");
-			
+
 			//Afficher
-			
+
 			afficher:
-			
+
 			printf("Les livres disponibles sont\n");
 			for(i=0;i<stock;i++){
 				printf("---<== Livre: %d ==>---\n",i+1);
@@ -163,7 +154,7 @@ int main(int argc, char *argv[]) {
 				printf("Prix: %f\n",livresPrix[i]);
 			}
 			printf("\n");
-			
+
 			//Suprimer
 			printf("Choisir le livre a suprimer ou enter -1 pour annuler\n");
 			scanf("%d",&livreId);
@@ -175,23 +166,20 @@ int main(int argc, char *argv[]) {
 				for(i=livreId;i<stock-1;i++){
 					for(j=0;j<10;j++){
 						livresTitres[i][j] = livresTitres[i+1][j];
-						livresTitres[i+1][j] = "";
 						livresAuteurs[i][j] = livresAuteurs[i+1][j];
-						livresAuteurs[i+1][j] = "";
 						livresPrix[i] = livresPrix[i+1];
-						livresPrix[i+1] = 0;
 					}
 				}
 				stock--;
 				goto afficher;
 			}
-			
-			
+
+
 			goto afficher;
-			
+
 //			livresTitres[livreId] = "";
 //			livresAuteurs[livreId] = "";
-			
+
 		    goto Les_chois;
 		case 5:
 //			afficher_le_nombre_total();
@@ -200,8 +188,8 @@ int main(int argc, char *argv[]) {
 		case 6:
 		    break;
 	}
-	
-	
-	
+
+
+
 	return 0;
 }
