@@ -13,8 +13,23 @@ void challenge1(){
 }
 
 
+void challenge2(){
+	//pyramide d'étoile
+	int n,i,j;
+	printf("Entrer n: ");
+	scanf("%d",&n);
+		printf("\t");
+		for(j=0;j<i;j++){
+		  printf("*");
+		}
+		printf("\n");
+		        
+	}
+}
+
+
 int main(int argc, char *argv[]) {
-	challenge1();
+	challenge2();
 	
 
 	return 0;
