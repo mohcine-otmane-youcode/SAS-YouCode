@@ -7,6 +7,7 @@ char livresAuteurs[10][10];
 float livresPrix[10];
 int stock=0,i,j;
 int livreId, attribu;
+char titresCollones[4][8] = {"ID", "Auteur", "Prix", "Quantite"};
 
 
 int main(int argc, char *argv[]) {
@@ -43,11 +44,50 @@ int main(int argc, char *argv[]) {
 		    
 		case 2: //Afficher
 			printf("Les livres disponibles sont\n");
+			
+			//Titres de collones
+			
+			
+			
+			
+			
+			
+			
+			
 			for(i=0;i<stock;i++){
 				printf("---<== Livre: %d ==>---\n",i+1);
-				printf("Titre: %s\n",livresTitres[i]);
-				printf("Auteur: %s\n",livresAuteurs[i]);
-				printf("Prix: %f\n",livresPrix[i]);
+//				printf("Titre: %s\n",livresTitres[i]);
+//				printf("Auteur: %s\n",livresAuteurs[i]);
+//				printf("Prix: %f\n",livresPrix[i]);
+				
+				int size = 0;
+				for(j=0;j<sizeof(livresTitres[i])/sizeof(char);j++){
+					if(livresTitres[i]!="\0"){
+						size++;
+					}
+				}
+				
+				printf("+");
+				for(j=0;j<size+4;j++){
+					printf("-");
+				}
+				printf("+");
+				printf("\n");
+				printf("|   %s  |",livresTitres[i]);
+				
+				printf("\n");
+				printf("+");
+				for(j=0;j<size+4;j++){
+					printf("-");
+				}
+				printf("+");
+				
+				
+				
+				
+				
+				
+				
 			}
 			printf("\n");
 			printf("1: Menu principale\n");
