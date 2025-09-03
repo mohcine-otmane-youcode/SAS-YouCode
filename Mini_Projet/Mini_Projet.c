@@ -9,10 +9,6 @@ int stock=0,i,j;
 int livreId, attribu;
 
 
-
-
-
-
 int main(int argc, char *argv[]) {
 	int chois;
 	
@@ -65,7 +61,15 @@ int main(int argc, char *argv[]) {
 			
 		    
 		    
-		case 3:
+		case 3: //Mettre a jour
+			printf("Les livres disponibles sont\n");
+			for(i=0;i<stock;i++){
+				printf("---<== Livre: %d ==>---\n",i+1);
+				printf("Titre: %s\n",livresTitres[i]);
+				printf("Auteur: %s\n",livresAuteurs[i]);
+				printf("Prix: %f\n",livresPrix[i]);
+			}
+			
 			printf("Choisir le livre a mettre a jour\n");
 			scanf("%d",&livreId);
 			printf("Choisir l\'atribu a mettre a jours\n");
@@ -106,11 +110,12 @@ int main(int argc, char *argv[]) {
 			//Suprimer
 			printf("Choisir le livre a suprimer ou enter -1 pour annuler\n");
 			scanf("%d",&livreId);
+			system("cls");
 			if(livreId==-1){
 				goto Les_chois;
 			}
 			if(livreId>-1 && livreId<stock){
-				for(i=livreId;i<stock;i++){
+				for(i=livreId;i<stock-1;i++){
 					for(j=0;j<10;j++){
 						livresTitres[i][j] = livresTitres[i+1][j];
 						livresTitres[i+1][j] = "";
@@ -120,7 +125,8 @@ int main(int argc, char *argv[]) {
 						livresPrix[i+1] = 0;
 					}
 				}
-//				stock--;
+				stock--;
+				goto afficher;
 			}
 			
 			
