@@ -55,36 +55,53 @@ int main(int argc, char *argv[]) {
 			
 			
 			for(i=0;i<stock;i++){
-				printf("---<== Livre: %d ==>---\n",i+1);
+//				printf("---<== Livre: %d ==>---\n",i+1);
 //				printf("Titre: %s\n",livresTitres[i]);
 //				printf("Auteur: %s\n",livresAuteurs[i]);
 //				printf("Prix: %f\n",livresPrix[i]);
 				
-				int size = 0;
+				int sizeTitre = 0,sizeAuteur=0,sizePrix=0;
 				for(j=0;j<sizeof(livresTitres[i])/sizeof(char);j++){
 					if(livresTitres[i]!="\0"){
-						size++;
+						sizeTitre++;
+					}
+				}
+				for(j=0;j<sizeof(livresAuteurs[i])/sizeof(char);j++){
+					if(livresTitres[i]!="\0"){
+						sizeAuteur++;
 					}
 				}
 				
 				printf("+");
-				for(j=0;j<size+4;j++){
+				for(j=0;j<sizeTitre+4;j++){
 					printf("-");
-				}
+				}		
 				printf("+");
-				printf("\n");
-				printf("|   %s  |",livresTitres[i]);
-				
-				printf("\n");
-				printf("+");
-				for(j=0;j<size+4;j++){
+				for(j=0;j<sizeAuteur+4;j++){
 					printf("-");
 				}
 				printf("+");
 				
+				printf("\n");
+				printf("|   %s  ",livresTitres[i]);
+				printf("   %s  |",livresAuteurs[i]);
+				printf("   %s  |",livresPrix[i]);
+				
+				printf("\n");
+				
+				printf("+");
+				for(j=0;j<sizeTitre+4;j++){
+					printf("-");
+				}
+				printf("+");
+				
+				for(j=0;j<sizeAuteur+4;j++){
+					printf("-");
+				}
+				printf("+");
 				
 				
-				
+				printf("\n");
 				
 				
 				
