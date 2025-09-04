@@ -4,135 +4,277 @@
 #include <unistd.h>
 
 
-char livresTitres[10][10], livresAuteurs[10][10], titresCollones[4][8] = {"ID", "Auteur", "Prix", "Quantite"}, titre[10];
-float livresPrix[10];
-int livresQuantite[10],stock=0,i,j, sizeTitreMax = 0, sizeAuteurMax = 0, livreId, attribu, choix;
+
+char livresTitres[10][10], livresAuteurs[10][10], titre[10];
+float livresPrix[10], livresQuantite[10];
+int stock=0,i,j, sizeTitreMax = 2, sizeAuteurMax = 6, livreId, attribu, choix;
 
 
 
 int main(int argc, char *argv[]) {
 
-
+		
 	Les_choix:
-	system("cls");
-	// Affichage de chois
-	printf("=======================================\n");
-	printf("\x1b[32m1: Ajouter un Livre au Stock\n");
-	printf("\x1b[0m2: Afficher Tous les Livres Disponibles\n");
-	printf("3: Mettre a Jour la Quantite d'un Livre\n");
-	printf("4: Rechercher un Livre\n");
-	printf("\x1b[31m5: Supprimer un Livre du Stock\n");
-	printf("\x1b[0m6: Afficher le Nombre Total de Livres en Stock\n");
-	printf("0: Sortir\n");
-	printf("=======================================\n");
-	printf("Votre choix: \n");
-	scanf("%d",&choix);
-	system("cls");
-
-
-	switch(choix){
-
-		case 1: //Ajouter
-			printf("Entrer le titre de livre\n");
+		// Affichage de chois
+		printf("\t\t\t\t\x1b[104m                                                           \x1b[0m\n");
+		printf("\t\t\t\t\x1b[45m \x1b[0m	\x1b[5;32;7;49m1: Ajouter un livre\x1b[0m                               \x1b[45m \x1b[0m\n");
+		printf("\t\t\t\t\x1b[45m \x1b[0m	2: Afficher Tous les Livres Disponibles           \x1b[45m \x1b[0m\n");
+		printf("\t\t\t\t\x1b[45m \x1b[0m	3: Mettre a Jour la Quantite d'un Livre           \x1b[45m \x1b[0m\n");
+		printf("\t\t\t\t\x1b[45m \x1b[0m	4: Rechercher un Livre                            \x1b[45m \x1b[0m\n");
+		printf("\t\t\t\t\x1b[45m \x1b[0m	\x1b[5;31;7;49m5: Supprimer un Livre du Stock\x1b[0m                    \x1b[45m \x1b[0m\n");
+		printf("\t\t\t\t\x1b[45m \x1b[0m	\x1b[0m6: Nombre Total de Livres en Stock                \x1b[45m \x1b[0m\n");
+		printf("\t\t\t\t\x1b[45m \x1b[0m	0: Sortir                                         \x1b[45m \x1b[0m\n");
+		printf("\t\t\t\t\x1b[104m                                                           \x1b[0m\n");
+		
+		printf("\x1b[5;32;7;49m->\x1b[0m:");
+		scanf("%d",&choix);
+		if(choix==1){
+			system("cls");
+			goto Ajouter;
+		} else if(choix==2){
+			system("cls");
+			goto Afficher;
+		} else if(choix==3){
+			system("cls");
+			goto Mettre_a_jour;
+		} else if(choix==4){
+			system("cls");
+			goto Rechercher;
+		} else if(choix==5){
+			system("cls");
+			goto Suprimer;
+		} else if(choix==6){
+			system("cls");
+//			goto Nombrestock;
+		} else {
+			printf("\t\t\t\t	\x1b[5;31;3;49m Erreur, Vous avez abuse le systeme\x1b[0m                    \n");
+			exit(1);
+		}
+	
+	Ajouter:
+			system("cls");
+			printf("\t\t\t\t\x1b[104m                                                           \x1b[0m\n");
+			printf("\t\t\t\t\x1b[45m \x1b[0m	\x1b[5;32;5;49m           Ajouter un livre                       \x1b[45m \x1b[0m\n");
+			printf("\t\t\t\t\x1b[104m                                                           \x1b[0m\n");
+			
+			printf("\n\n");
+			printf("\x1b[42m    \x1b[0mEntrer le titre de livre\x1b[42m    \x1b[0m\n");
 			scanf(" %[^\n]",&livresTitres[stock]);
-			printf("Entrer l\'auteur de livre\n");
+			printf("\x1b[42m    \x1b[0mEntrer l\'auteur de livre\x1b[42m    \x1b[0m\n");
 			scanf(" %[^\n]",&livresAuteurs[stock]);
-			printf("Entrer le prix de livre\n");
-			scanf("%f",&livresPrix[stock]);
-			printf("Entrer la quantite\n");
+			float prix;
+			printf("\x1b[42m    \x1b[0mEntrer le prix de livre\x1b[42m    \x1b[0m\n");
+			scanf("%f",&prix);
+			while(prix>100){
+				printf("\x1b[5;31;3;49mLivre trop cher\x1b[0m\n");
+				printf("\x1b[42m    \x1b[0mEntrer le prix de livre\x1b[42m    \x1b[0m\n");
+				scanf("%f",&prix);
+			}
+			
+			livresPrix[i] = prix;
+			
+			
+			
+			
+			printf("\x1b[42m    \x1b[0mEntrer la quantite\x1b[42m    \x1b[0m\n");
 			scanf("%f",&livresQuantite[stock]);
 			stock++;
-		    goto Les_choix;
-
-		case 2: //Afficher
-		    afficher:
-			printf("Les livres disponibles sont\n");
-
+			
+			printf("\x1b[32mLivre Ajoute avec succes entrer 1 pour revenir\x1b[0m\n");
+			
+			if(scanf("%d",&attribu)==1){
+				system("cls");
+				goto Les_choix;
+			}
+			
+		    
+		    
+	
+	Afficher:
 			//Titres de collones
-
-			for(i=0;i<stock;i++){
-				int sizeTitre = 0,sizeAuteur=0,sizePrix=0;
-
-				sizeTitre = strlen(livresTitres[i]);
-                sizeAuteur = strlen(livresAuteurs[i]);
-
-                if(sizeTitreMax<sizeTitre){
-                    sizeTitreMax = sizeTitre;
-                }
-                if(sizeTitreMax<sizeTitre){
-                    sizeAuteurMax = sizeAuteur;
-                }
-
-				printf("+");
-				for(j=0;j<sizeTitreMax+4;j++){
-					printf("-");
-				}
-				printf("+");
-				for(j=0;j<sizeAuteurMax+8;j++){
-					printf("-");
-				}
-				printf("+");
-
-				printf("\n");
-
-				printf("|  %s  ",livresTitres[i]);
-				printf("|   %s  |",livresAuteurs[i]);
-				printf("  %.2f  |",livresPrix[i]);
-
-				printf("\n");
-/*
-				printf("+");
-				for(j=0;j<sizeTitreMax+4;j++){
-					printf("-");
-				}
-				printf("+");
-
-				for(j=0;j<sizeAuteurMax+8;j++){
-					printf("-");
-				}
-				printf("+");
-				*/
-			}
-        printf("Entrer 0 pour revenir au menu principal\n");
-
-        scanf("%d",&attribu);
-        if(attribu==0){
-            goto Les_choix;
-        }
-
-		case 3: //Mettre a jour
 			printf("Les livres disponibles sont\n");
+			//ID
+			printf("\t\t\t\t\x1b[104m+");
+			for(j=0;j<2+4;j++){
+				printf("-");
+			}
+			//Titre
+			printf("+");
+			for(j=0;j<5+4;j++){
+				printf("-");
+			}
+			//Auteur
+			printf("+");
+			for(j=0;j<6+4;j++){
+				printf("-");
+			}
+			
+			//Prix
+			printf("+");
+			for(j=0;j<4+4;j++){
+				printf("-");
+			}
+			//Quantite
+			printf("+");
+			for(j=0;j<8+4;j++){
+				printf("-");
+			}
+			printf("+\x1b[0m\n");
+			
+			
+			printf("\t\t\t\t|  ID  |  Titre  |  Auteur  |  Prix  |  Quantite  |\n");
+			
+			
+			//ID
+			printf("\t\t\t\t\x1b[104m+");
+			for(j=0;j<2+4;j++){
+				printf("-");
+			}
+			//Titre
+			printf("+");
+			for(j=0;j<5+4;j++){
+				printf("-");
+			}
+			//Auteur
+			printf("+");
+			for(j=0;j<6+4;j++){
+				printf("-");
+			}
+			
+			//Prix
+			printf("+");
+			for(j=0;j<4+4;j++){
+				printf("-");
+			}
+			//Quantite
+			printf("+");
+			for(j=0;j<8+4;j++){
+				printf("-");
+			}
+			printf("+\x1b[0m");
+		
+			
 			for(i=0;i<stock;i++){
-				printf("---<== Livre: %d ==>---\n",i+1);
-				printf("Titre: %s\n",livresTitres[i]);
-				printf("Auteur: %s\n",livresAuteurs[i]);
-				printf("Prix: %f\n",livresPrix[i]);
+				printf("\n");
+				printf("\t\t\t\t|  %.2d  |", i+1, livresTitres[i],livresAuteurs[i]);
+				printf("  %.5s  |", livresTitres[i]);
+				
+				printf("  %.6s  ", livresAuteurs[i]);
+				
+				printf("|  %.2f ", livresPrix[i]);
+				if(livresPrix[i]<10){
+					printf(" ");
+				}
+				printf("|  %.2f     ", livresQuantite[i]);
+				if(livresQuantite[i]<10){
+					printf(" ");
+				}
+				printf("|\n");
+			
+				//ID
+				printf("\t\t\t\t\x1b[104m+");
+				for(j=0;j<2+4;j++){
+					printf("-");
+				}
+				//Titre
+				printf("+");
+				for(j=0;j<5+4;j++){
+					printf("-");
+				}
+				//Auteur
+				printf("+");
+				for(j=0;j<6+4;j++){
+					printf("-");
+				}
+				
+				//Prix
+				printf("+");
+				for(j=0;j<4+4;j++){
+					printf("-");
+				}
+				//Quantite
+				printf("+");
+				for(j=0;j<8+4;j++){
+					printf("-");
+				}
+				printf("+\x1b[0m");
 			}
-
-			printf("Choisir le livre a mettre a jour\n");
-			scanf("%d",&livreId);
-			printf("Choisir l\'atribu a mettre a jours\n");
-			printf("1: Titre\n");
-			printf("2: Auteur\n");
-			printf("3: Prix\n");
-			scanf("%d",&attribu);
-
-			switch(attribu){
-				case 1:
-					printf("Entrer le titre de livre\n");
-					scanf(" %[^\n]",&livresTitres[livreId]);
-				case 2:
-					printf("Entrer l\'auteur de livre\n");
-					scanf(" %[^\n]",&livresAuteurs[livreId]);
-				case 3:
-					printf("Entrer le prix de livre\n");
-					scanf("%f",&livresPrix[livreId]);
+				
+			printf("\x1b[0m\n");
+		
+				
+	        printf("Entrer 1 pour revenir au menu principal\n");
+	        if(scanf("%d",&attribu)==1){
+	        	system("cls");
+	            goto Les_choix;
+	        }
+        
+        
+        Mettre_a_jour:
+        	
+        	printf("\n\n");
+        	
+        	if(stock>0){
+        		system("cls");
+				printf("\t\t\t\t\x1b[104m                                                           \x1b[0m\n");
+				printf("\t\t\t\t\x1b[45m \x1b[0m	\x1b[5;32;49m           Livres disponibles                     \x1b[45m \x1b[0m\n");
+				printf("\t\t\t\t\x1b[104m                                                           \x1b[0m\n");
+				for(i=0;i<stock;i++){
+					printf("---<== Livre: %d ==>---\n",i+1);
+					printf("Titre: %s\n",livresTitres[i]);
+					printf("Auteur: %s\n",livresAuteurs[i]);
+					printf("Prix: %f\n",livresPrix[i]);
+				}
+	
+				printf("Choisir le livre a mettre a jour\n");
+				scanf("%d",&livreId);
+				printf("Choisir l\'atribu a mettre a jours\n");
+				printf("1: Titre\n");
+				printf("2: Auteur\n");
+				printf("3: Prix\n");
+				scanf("%d",&attribu);
+	
+				switch(attribu){
+					case 1:
+						printf("Entrer le titre de livre\n");
+						printf("L'ancien titre: %s", livresTitres[livreId-1]);
+						scanf(" %[^\n]",&livresTitres[livreId-1]);
+					case 2:
+						printf("Entrer l\'auteur de livre\n");
+						scanf(" %[^\n]",&livresAuteurs[livreId]);
+					case 3:
+						printf("Entrer le prix de livre\n");
+						scanf("%f",&livresPrix[livreId]);
+					case 4:
+						printf("Entrer la quantite de livre\n");
+						scanf("%f",&livresPrix[livreId]);
+				}
+			} else {
+				system("cls");
+				printf("\t\t\t\t\x1b[104m                                                           \x1b[0m\n");
+				printf("\t\t\t\t\x1b[45m \x1b[0m	\x1b[5;32;49m           Pas de Livres disponibles              \x1b[45m \x1b[0m\n");
+				printf("\t\t\t\t\x1b[104m                                                           \x1b[0m\n");
+				
+				printf("Clicker Entrer pour revenir au menu principal\n");
+				getchar();
+				getchar();
 			}
-		    goto Les_choix;
-
-
-        case 4: //Rechercher
-            printf("Chercher un livre par\n");
+			system("cls");
+			goto Les_choix;
+	
+		
+		
+		Rechercher:
+			
+			system("cls");
+			printf("\t\t\t\x1b[104m                                                           \x1b[0m\n");
+			printf("\t\t\t\x1b[45m \x1b[0m	\x1b[5;32;5;49m           Rechercher un livre                    \x1b[45m \x1b[0m\n");
+			printf("\t\t\t\x1b[104m                                                           \x1b[0m\n");
+			
+			
+			printf("\n\n");
+			printf("\x1b[42m    \x1b[0mChercher un livre par\x1b[42m    \x1b[0m\n");
+			printf("\n\n");
             printf("1: Titre\n");
             printf("2: Auteur\n");
 
@@ -141,29 +283,29 @@ int main(int argc, char *argv[]) {
                 printf("Le titre a chercher: ");
                 scanf(" %[^\n]",&titre);
                 for(i=0;i<stock;i++){
-                    if(strcmp(livresTitres[i],titre)){
-                      printf("Titre: %s\n",livresTitres[i]);
-                      printf("Auteur: %s\n",livresAuteurs[i]);
-                      printf("Prix: %f\n",livresPrix[i]);
+                	                    
+                    if(strcmp(livresTitres[i],titre)==0){									                	                    
+                    	printf("Le livre que vous cherchez\n");
+                      	printf("Titre: %s\n",livresTitres[i]);
+                      	printf("Auteur: %s\n",livresAuteurs[i]);
+                      	printf("Prix: %.2f\n",livresPrix[i]);
+                      	printf("Quantite: %.2f\n",livresQuantite[i]);
                     } else {
                         printf("Le livre que vous cherchez n'existe pas\n");
                     }
                 }
-            goto Les_choix;
+            }
+            printf("Entrer 0 pour revenir au menu principal\n");
+            
+	        scanf("%d",&attribu);
+	        if(attribu==0){
+	            goto Les_choix;
+	        }
+          
+            
+        Suprimer:
+        	goto Afficher;
 
-        case 5:
-
-			//Afficher
-			printf("Les livres disponibles sont\n");
-			for(i=0;i<stock;i++){
-				printf("---<== Livre: %d ==>---\n",i+1);
-				printf("Titre: %s\n",livresTitres[i]);
-				printf("Auteur: %s\n",livresAuteurs[i]);
-				printf("Prix: %f\n",livresPrix[i]);
-			}
-			printf("\n");
-
-			//Suprimer
 			printf("Choisir le livre a suprimer ou enter -1 pour annuler\n");
 			scanf("%d",&livreId);
 			system("cls");
@@ -179,14 +321,16 @@ int main(int argc, char *argv[]) {
 					}
 				}
 				stock--;
+			} else {
+				printf("Choix incorrect\n");
 			}
 		    goto Les_choix;
-		case 6:
-			printf("Le nombre total de stock est: %d",stock);
+            
+        
+        Nombrestock:
+        	printf("Le nombre total de stock est: %d",stock);
 		    goto Les_choix;
-		case 7:
-		    break;
-	}
-	}
+		    
 	return 0;
-	}
+
+}
