@@ -28,6 +28,7 @@ int main(int argc, char *argv[]) {
 	printf("Votre choix: \n");
 	scanf("%d",&choix);
 	system("cls");
+	
 
 
 	switch(choix){
