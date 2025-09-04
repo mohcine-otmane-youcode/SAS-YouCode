@@ -94,7 +94,7 @@ int main(int argc, char *argv[]) {
 			//Titres de collones
 			printf("Les livres disponibles sont\n");
 			//ID
-			printf("+");
+			printf("\t\t\t\t\x1b[104m+");
 			for(j=0;j<2+4;j++){
 				printf("-");
 			}
@@ -119,14 +119,14 @@ int main(int argc, char *argv[]) {
 			for(j=0;j<8+4;j++){
 				printf("-");
 			}
-			printf("+\n");
+			printf("+\x1b[0m\n");
 			
 			
-			printf("|  ID  |  Titre  |  Auteur  |  Prix  |  Quantite  |\n");
+			printf("\t\t\t\t|  ID  |  Titre  |  Auteur  |  Prix  |  Quantite  |\n");
 			
 			
 			//ID
-			printf("+");
+			printf("\t\t\t\t\x1b[104m+");
 			for(j=0;j<2+4;j++){
 				printf("-");
 			}
@@ -151,12 +151,12 @@ int main(int argc, char *argv[]) {
 			for(j=0;j<8+4;j++){
 				printf("-");
 			}
-			printf("+");
+			printf("+\x1b[0m");
 		
 			
 			for(i=0;i<stock;i++){
 				printf("\n");
-				printf("|  %.2d  |", i+1, livresTitres[i],livresAuteurs[i]);
+				printf("\t\t\t\t|  %.2d  |", i+1, livresTitres[i],livresAuteurs[i]);
 				printf("  %.5s  |", livresTitres[i]);
 				
 				printf("  %.6s  ", livresAuteurs[i]);
@@ -172,7 +172,7 @@ int main(int argc, char *argv[]) {
 				printf("|\n");
 			
 				//ID
-				printf("+");
+				printf("\t\t\t\t\x1b[104m+");
 				for(j=0;j<2+4;j++){
 					printf("-");
 				}
@@ -197,10 +197,10 @@ int main(int argc, char *argv[]) {
 				for(j=0;j<8+4;j++){
 					printf("-");
 				}
-				printf("+");
+				printf("+\x1b[0m");
 			}
 				
-			printf("\n");
+			printf("\x1b[0m\n");
 		
 				
 	        printf("Entrer 1 pour revenir au menu principal\n");
