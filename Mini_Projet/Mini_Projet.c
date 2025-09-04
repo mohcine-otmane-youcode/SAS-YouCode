@@ -6,8 +6,8 @@
 
 
 char livresTitres[10][10], livresAuteurs[10][10], titre[10];
-float livresPrix[10];
-int livresQuantite[10],stock=0,i,j, sizeTitreMax = 2, sizeAuteurMax = 6, livreId, attribu, choix;
+float livresPrix[10], livresQuantite[10];
+int stock=0,i,j, sizeTitreMax = 2, sizeAuteurMax = 6, livreId, attribu, choix;
 
 
 
@@ -212,8 +212,6 @@ int main(int argc, char *argv[]) {
         
         Mettre_a_jour:
         	
-        	
-        	
         	printf("\n\n");
         	
         	if(stock>0){
@@ -239,12 +237,16 @@ int main(int argc, char *argv[]) {
 				switch(attribu){
 					case 1:
 						printf("Entrer le titre de livre\n");
-						scanf(" %[^\n]",&livresTitres[livreId]);
+						printf("L'ancien titre: %s", livresTitres[livreId-1]);
+						scanf(" %[^\n]",&livresTitres[livreId-1]);
 					case 2:
 						printf("Entrer l\'auteur de livre\n");
 						scanf(" %[^\n]",&livresAuteurs[livreId]);
 					case 3:
 						printf("Entrer le prix de livre\n");
+						scanf("%f",&livresPrix[livreId]);
+					case 4:
+						printf("Entrer la quantite de livre\n");
 						scanf("%f",&livresPrix[livreId]);
 				}
 			} else {
