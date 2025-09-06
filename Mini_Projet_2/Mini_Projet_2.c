@@ -52,7 +52,7 @@ void Afficher_Un_Contact(int contactId){
 }
 
 void Afficher_Contacts(){
-	for (int i = 0; i < num_contact; i++) {
+	for (i = 0; i < num_contact; i++) {
 		Afficher_Un_Contact(i);
 	}
 }
@@ -68,13 +68,7 @@ void Rechercher_un_Contact(){
 	printf("\x1b[42m    \x1b[0mEntrer le nom de contact\x1b[42m    \x1b[0m\n");
 	scanf(" %[^\n]",&Nom);
 
-	for(i=0;i<num_contact;i++){
-		if(strcmp(Nom,contacts[i].Nom)==0){
-			// Afficher_Un_Contact(i);
-		}
-	}
-
-
+	Afficher_Contacts();
 }
 
 void Supprimer_un_Contact(){
@@ -83,36 +77,46 @@ void Supprimer_un_Contact(){
 
 
 
-int Afficher_Choix(){
+void Afficher_Choix(){
 	// Affichage de choix
-		int choix;
-		printf("\t\t\t\t\x1b[104m                                                           \x1b[0m\n");
-		printf("\t\t\t\t\x1b[45m \x1b[0m	\x1b[6;32;7;49m1: Ajouter un Contact\x1b[0m                             \x1b[45m \x1b[0m\n");
-		printf("\t\t\t\t\x1b[45m \x1b[0m	2: Afficher Tous les Contacts Disponibles         \x1b[45m \x1b[0m\n");
-		printf("\t\t\t\t\x1b[45m \x1b[0m	3: Mettre un contact                              \x1b[45m \x1b[0m\n");
-		printf("\t\t\t\t\x1b[45m \x1b[0m	4: Rechercher un Livre                            \x1b[45m \x1b[0m\n");
-		printf("\t\t\t\t\x1b[45m \x1b[0m	\x1b[5;31;7;49m5: Supprimer un contact\x1b[0m                           \x1b[45m \x1b[0m\n");
-		printf("\t\t\t\t\x1b[45m \x1b[0m	0: Sortir                                         \x1b[45m \x1b[0m\n");
-		printf("\t\t\t\t\x1b[104m                                                           \x1b[0m\n");
-		return choix;
+	// system("cls");
+	printf("\t\t\t\t\x1b[104m                                                           \x1b[0m\n");
+	printf("\t\t\t\t\x1b[45m \x1b[0m	\x1b[6;32;7;49m1: Ajouter un Contact\x1b[0m                             \x1b[45m \x1b[0m\n");
+	printf("\t\t\t\t\x1b[45m \x1b[0m	2: Afficher Tous les Contacts Disponibles         \x1b[45m \x1b[0m\n");
+	printf("\t\t\t\t\x1b[45m \x1b[0m	3: Mettre un contact                              \x1b[45m \x1b[0m\n");
+	printf("\t\t\t\t\x1b[45m \x1b[0m	4: Rechercher un Livre                            \x1b[45m \x1b[0m\n");
+	printf("\t\t\t\t\x1b[45m \x1b[0m	\x1b[5;31;7;49m5: Supprimer un contact\x1b[0m                           \x1b[45m \x1b[0m\n");
+	printf("\t\t\t\t\x1b[45m \x1b[0m	0: Sortir                                         \x1b[45m \x1b[0m\n");
+	printf("\t\t\t\t\x1b[104m                                                           \x1b[0m\n");
 }
 
 int main(){
-	int choix;
-	// while(1==1){
-	// 	choix = Afficher_Choix();
-	// 	Ajouter_un_Contact();
-	// 	Afficher_Tous_les_Contacts();
-		
-	// }
+	int choix, estInt;;
 
-	Ajouter_un_Contact();
-	Ajouter_un_Contact();
-	Afficher_Contacts();
-	// Rechercher_un_Contact();
-	
-	
-	
-	
+	Afficher_Choix();
+	while(1==1){
+		Afficher_Choix();
+		do{
+			estInt = scanf("%d", &choix);
+			if(estInt!=1){
+				printf("Vous n'avez pas entree un entier\n");
+				while(getchar()!='\n');
+			}
+
+		}while(estInt!=1);
+
+		if(choix==1){
+			system("cls");
+			Ajouter_un_Contact();
+		}
+		system("cls");
+		Afficher_Choix();
+		if(choix==2){
+			system("cls");
+			Afficher_Contacts();
+		} 
+		
+	}
+
 	return 0;
 }
