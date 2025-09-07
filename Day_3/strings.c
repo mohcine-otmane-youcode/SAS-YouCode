@@ -67,10 +67,10 @@ void challenge4(){
     }
     
     for(i=0;i<longeurText1;i++){
-            if(strcmp(text1,text2)!=0){
-                egal=0;
-                break;
-            }
+        if(text1[i]!=text2[i]){
+            egal=0;
+            break;
+        }
     }
     if(egal==1){
         printf("Ces deux textes sont egales\n");
@@ -167,9 +167,53 @@ void challenge9(){
     printf("\nTEXT: %s", text);
 }
 
+void challenge10(){
+    //Trouver un Sous-String
+    char text[100], sousText[100];
+    int i=0, j, longeurSousText = 0, longeurText = 0;
+    printf("Entrer le text: ");
+    scanf(" %[^\n]",&text);
+    printf("Entrer le sous-text: ");
+    scanf(" %[^\n]",&sousText);
+
+    while(text[longeurText]!='\0'){
+        longeurText++;
+    }
+    while(sousText[longeurSousText]!='\0'){
+        longeurSousText++;
+    }
+
+    int existe = 0;
+    if(longeurText>=longeurSousText){
+        while(i<=longeurText-longeurSousText){
+            existe = 1;
+            for(j=0;j<longeurSousText;j++){
+                if(text[i+j]!=sousText[j]){
+                    existe=0;
+                    break;
+                }
+            }
+            if(existe==1){
+                break;
+            }
+            i++;
+        }
+
+        if(existe==1){
+        printf("\n%s existe dans %s", sousText, text);
+        } else {
+            printf("\n%s n'existe pas dans %s", sousText, text);
+        }
+        
+    } else {
+        printf("D'apres Euclide, le tout est toujours plus grand que la partie.\n");
+    }
+    
+}
+
 
 int main(){
-    challenge9();
+    challenge10();
 
     return 0;
 }
