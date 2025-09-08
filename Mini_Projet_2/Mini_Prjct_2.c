@@ -2,7 +2,6 @@
 #include <string.h>
 #include <ctype.h>
 
-#define MAX_CONTACTS 100
 
 struct Contact {
     char Nom[10];
@@ -108,14 +107,28 @@ void Modifier_Contact() {
             scanf("%s", contacts[i].Nom);
 
             do {
+                int bonNumero = 1;
                 printf("Nouveau numero: ");
                 scanf("%s", contacts[i].Numero);
-            } while(!verifier_numero(contacts[i].Numero));
+
+                 int len = strlen(num);
+                if(len != 10) bonNumero = 0;
+                if(num[0] != '0') bonNumero = 0;
+                if(num[1] != '6' && num[1] != '7') bonNumero = 0;
+                for(int i=0;i<10;i++) {
+                    if(!isdigit(num[i])) bonNumero = 0;
+                }
+
+            } while(bonNumero==0);
 
             do {
+                int bonEmail = 1;
                 printf("Nouvel email: ");
                 scanf("%s", contacts[i].Email);
-            } while(!verifier_email(contacts[i].Email));
+
+                bonEmail = strchr(email,'@') && strchr(email,'.');
+
+            } while(bonEmail==0);
 
             printf("\t\t\t\t\x1b[42m Contact modifie \x1b[0m\n");
             return;
@@ -124,8 +137,25 @@ void Modifier_Contact() {
     printf("\t\t\t\t\x1b[101m Contact non disponible \x1b[0m\n");
 }
 
-void Supprimer_un_Contact(){
-	
+void Supprimer_Contact() {
+    if(num_contact == 0){
+        printf("\t\t\t\t\x1b[101m Pas de contact \x1b[0m\n");
+    }
+
+    char nom[20];
+    printf("Nom : ");
+    scanf("%s", nom);
+
+    for(int i=0;i<num_contact;i++) {
+        if(strcasecmp(contacts[i].Nom, nom)==0) {
+            for(int j=i;j<num_contact-1;j++) {
+                contacts[j] = contacts[j+1];
+            }
+            num_contact--;
+            printf("\t\t\t\t\x1b[41m Contact supprime ! \x1b[0m\n");
+        }
+    }
+    printf("\t\t\t\t\x1b[101m Pas de contact  \x1b[0m\n");
 }
 
 
@@ -143,33 +173,31 @@ void Afficher_Choix(){
 	printf("\t\t\t\t\x1b[104m                                                           \x1b[0m\n");
 }
 
-int main(){
-	int choix, estInt;;
 
-	Afficher_Choix();
-	while(1==1){
-		Afficher_Choix();
-		do{
-			estInt = scanf("%d", &choix);
-			if(estInt!=1){
-				printf("Vous n'avez pas entree un entier\n");
-				while(getchar()!='\n');
-			}
+int main() {
+    int choix;
+    do {
+        printf("\n\t\t\t\t\x1b[46m              Contacts               \x1b[0m\n");
+        printf("\t\t\t\t\x1b[45m [1] \x1b[0m Ajouter un contact\x1b[46m \x1b[0m\n");
+        printf("\t\t\t\t\x1b[45m [2] \x1b[0m Afficher les contacts\x1b[46m \x1b[0m\n");
+        printf("\t\t\t\t\x1b[45m [3] \x1b[0m Rechercher un contact\x1b[46m \x1b[0m\n");
+        printf("\t\t\t\t\x1b[45m [4] \x1b[0m Modifier un contact\x1b[46m \x1b[0m\n");
+        printf("\t\t\t\t\x1b[45m [5] \x1b[0m Supprimer un contact\x1b[46m \x1b[0m\n");
+        printf("\t\t\t\t\x1b[45m [6] \x1b[0m Quitter\x1b[46m \x1b[0m\n");
+        printf("\t\t\t\t\x1b[46m                                    \x1b[0m\x1b[46m \x1b[0m\n");
+        printf("\t\t\t\tVotre choix : ");
+        scanf("%d", &choix);
 
-		}while(estInt!=1);
-
-		if(choix==1){
-			system("cls");
-			Ajouter_un_Contact();
-		}
-		system("cls");
-		Afficher_Choix();
-		if(choix==2){
-			system("cls");
-			Afficher_Contacts();
-		} 
-		
-	}
+        switch(choix) {
+            case 1: Ajouter_Contact(); break;
+            case 2: Afficher_Contacts(); break;
+            case 3: Rechercher_Contact(); break;
+            case 4: Modifier_Contact(); break;
+            case 5: Supprimer_Contact(); break;
+            case 6: printf("\t\t\t\t\x1b[41m      Fin du programme      \x1b[0m\n"); break;
+            default: printf("\t\t\t\t\x1b[101m Choix non valide \x1b[0m\n");
+        }
+    } while(choix != 6);
 
     return 0;
 }
